@@ -54,7 +54,7 @@ gateways - Enterprise AI deployments
 -   Debug JSON dump on API failure
 -   Timestamped structured logging
 -   Separate models for aggregation and analysis
--   GPLv2+ licensed
+-   MIT licensed
 
 ------------------------------------------------------------------------
 
@@ -162,13 +162,9 @@ These contain the raw API JSON responses for troubleshooting.
 
 ## 📜 License
 
-GNU General Public License v2 or later (GPLv2+)
+MIT License
 
-This program is free software: you can redistribute it and/or modify\
-it under the terms of the GNU General Public License as published by\
-the Free Software Foundation.
-
-See: https://www.gnu.org/licenses/
+See: [LICENSE](LICENSE)
 
 ------------------------------------------------------------------------
 
