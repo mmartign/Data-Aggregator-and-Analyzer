@@ -54,7 +54,7 @@ gateways - Enterprise AI deployments
 -   Debug JSON dump on API failure
 -   Timestamped structured logging
 -   Separate models for aggregation and analysis
--   MIT licensed
+-   CC BY 4.0 licensed
 
 ------------------------------------------------------------------------
 
@@ -162,7 +162,7 @@ These contain the raw API JSON responses for troubleshooting.
 
 ## 📜 License
 
-MIT License
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
 See: [LICENSE](LICENSE)
 
