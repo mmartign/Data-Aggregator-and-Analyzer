@@ -8,11 +8,13 @@
 // 46051 San Giorgio Bigarello
 // https://spazioit.com
 //
-// SPDX-License-Identifier: CC-BY-4.0
+// SPDX-License-Identifier: AGPL-3.0-only
 //
-// This work is licensed under the Creative Commons Attribution 4.0
-// International License (CC BY 4.0):
-// https://creativecommons.org/licenses/by/4.0/legalcode
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as published
+// by the Free Software Foundation, version 3 only.
+//
+// Full license text: https://www.gnu.org/licenses/agpl-3.0.html
 //
 #include <chrono>
 #include <cctype>

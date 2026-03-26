@@ -54,7 +54,7 @@ gateways - Enterprise AI deployments
 -   Debug JSON dump on API failure
 -   Timestamped structured logging
 -   Separate models for aggregation and analysis
--   CC BY 4.0 licensed
+-   AGPL-3.0 licensed
 
 ------------------------------------------------------------------------
 
@@ -162,7 +162,7 @@ These contain the raw API JSON responses for troubleshooting.
 
 ## 📜 License
 
-Creative Commons Attribution 4.0 International (CC BY 4.0)
+GNU Affero General Public License v3.0 (AGPL-3.0-only)
 
 See: [LICENSE](LICENSE)
 
