@@ -1,5 +1,10 @@
 # OR-Edge Medical Data Fusion & Analysis (C++)
 
+[![CI](https://github.com/mmartign/Data-Aggregator-and-Analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/mmartign/Data-Aggregator-and-Analyzer/actions/workflows/ci.yml)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPLv3-blue.svg)](LICENSE)
+[![C++20](https://img.shields.io/badge/C%2B%2B-20-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B20)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+
 **Part of the Spazio IT OR-Edge Project**
 
 A high-performance C++ application that fuses **audio transcription**
@@ -60,39 +65,43 @@ gateways - Enterprise AI deployments
 
 ## 📦 Requirements
 
--   C++17 or later
--   `nlohmann/json`
--   An OpenAI-compatible C++ client providing `openai.hpp`
--   CMake (recommended)
+-   C++20 compiler
+-   CMake 3.14+
+-   `libcurl` development headers (e.g. `libcurl4-openssl-dev` on
+    Debian/Ubuntu, `curl` via Homebrew on macOS)
+-   Internet access on first configure, so CMake's `FetchContent` can
+    pull in [`openai-cpp`](https://github.com/olrea/openai-cpp)
+    (which vendors `nlohmann/json`) and, for tests,
+    [Catch2](https://github.com/catchorg/Catch2)
 -   Access to an OpenAI-compatible API endpoint
 
 ------------------------------------------------------------------------
 
-## 🔧 Build Example (CMake)
-
-``` cmake
-cmake_minimum_required(VERSION 3.16)
-project(or_edge)
-
-set(CMAKE_CXX_STANDARD 17)
-
-find_package(nlohmann_json REQUIRED)
-
-add_executable(or_edge main.cpp)
-
-target_link_libraries(or_edge
-    nlohmann_json::nlohmann_json
-)
-```
-
-Build:
+## 🔧 Build
 
 ``` bash
-mkdir build
-cd build
-cmake ..
-make
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
 ```
+
+The `data_aggregator_analyzer` binary is produced in `build/`.
+
+------------------------------------------------------------------------
+
+## 🧪 Testing
+
+Unit tests cover the pure logic (config parsing, CSV fence stripping,
+JSON response extraction) and require no network access or API key.
+
+``` bash
+cmake -S . -B build -DDAA_BUILD_TESTS=ON
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+```
+
+Pass `-DDAA_BUILD_TESTS=OFF` to skip building tests. CI runs this same
+suite on every push and pull request via
+[GitHub Actions](.github/workflows/ci.yml).
 
 ------------------------------------------------------------------------
 
@@ -122,11 +131,11 @@ analyzer_prompt = Could you please: 1. Analyze in detail the following "fusion t
 
 ## ▶ Usage
 
-    ./or_edge <audio_transcription_file> <video_semantic_file> [config.ini]
+    ./build/data_aggregator_analyzer <audio_transcription_file> <video_semantic_file> [config.ini]
 
 Example:
 
-    ./or_edge audio.txt video.txt config.ini
+    ./build/data_aggregator_analyzer audio.txt video.txt config.ini
 
 If `config.ini` is omitted, it defaults to:
 
@@ -157,6 +166,17 @@ automatically writes:
 -   `debug_analyzer_response.json`
 
 These contain the raw API JSON responses for troubleshooting.
+
+------------------------------------------------------------------------
+
+## 🤝 Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for build,
+test, and pull request guidelines. Please also review our
+[Code of Conduct](CODE_OF_CONDUCT.md).
+
+Found a security issue? Please follow the responsible disclosure process in
+[SECURITY.md](SECURITY.md) instead of opening a public issue.
 
 ------------------------------------------------------------------------
 
