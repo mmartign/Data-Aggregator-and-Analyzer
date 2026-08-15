@@ -20,9 +20,6 @@
 
 #include <map>
 #include <string>
-#include <nlohmann/json.hpp>
-
-using json = nlohmann::json;
 
 struct AppConfig {
     std::string baseUrl;
@@ -35,21 +32,6 @@ struct AppConfig {
 };
 
 std::string ensureTrailingSlash(const std::string& url);
-std::string nowTag();
-void logInfo(const std::string& msg);
-void logError(const std::string& msg);
 
 std::map<std::string, std::string> parseIni(const std::string& filename);
 bool loadConfig(const std::string& path, AppConfig& cfg);
-
-std::string readTextFile(const std::string& path);
-void writeTextFile(const std::string& path, const std::string& content);
-
-std::string trimCopy(const std::string& s);
-std::string stripCsvFence(const std::string& text);
-
-void appendTextDeep(const json& node, std::string& out);
-std::string extractMessageText(const json& response);
-std::string extractApiError(const json& response);
-
-std::string debugJsonPath(const std::string& tag);

@@ -20,7 +20,11 @@
 #include <string>
 #include <openai.hpp>
 
-#include "core.hpp"
+#include "config.hpp"
+#include "file_io.hpp"
+#include "logging.hpp"
+#include "openai_response.hpp"
+#include "text_utils.hpp"
 
 static void printUsage(const char* argv0)
 {

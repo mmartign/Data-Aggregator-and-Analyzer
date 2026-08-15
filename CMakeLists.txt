@@ -23,9 +23,17 @@ if(NOT openai_cpp_POPULATED)
     FetchContent_Populate(openai_cpp)
 endif()
 
-# Core library: pure logic (config parsing, CSV/JSON helpers) with no
-# dependency on libcurl, so it can be built and unit tested in isolation.
-add_library(daa_core STATIC core.cpp core.hpp)
+# Core library: pure logic (config parsing, CSV/JSON helpers, file I/O,
+# logging) with no dependency on libcurl, so it can be built and unit tested
+# in isolation. Split into one module per functional area rather than a
+# single monolithic core.
+add_library(daa_core STATIC
+    config.cpp config.hpp
+    file_io.cpp file_io.hpp
+    logging.cpp logging.hpp
+    openai_response.cpp openai_response.hpp
+    text_utils.cpp text_utils.hpp
+)
 target_include_directories(daa_core PUBLIC
     ${CMAKE_SOURCE_DIR}
     ${openai_cpp_SOURCE_DIR}/include/openai
@@ -64,7 +72,10 @@ if(DAA_BUILD_TESTS)
     enable_testing()
 
     add_executable(daa_tests
-        tests/test_core.cpp
+        tests/test_config.cpp
+        tests/test_file_io.cpp
+        tests/test_openai_response.cpp
+        tests/test_text_utils.cpp
     )
     target_link_libraries(daa_tests PRIVATE daa_core Catch2::Catch2WithMain)
 
